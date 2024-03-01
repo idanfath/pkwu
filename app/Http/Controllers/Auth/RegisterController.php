@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
 class RegisterController extends Controller
 {
     /*
@@ -48,7 +47,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $currentdate = Carbon::today();
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'birth-place' => ['required', 'string', 'max:255'],

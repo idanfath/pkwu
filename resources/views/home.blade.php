@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -25,7 +26,7 @@
                     <div class="card-header">Users</div>
 
                     <div class="card-body table-responsive">
-                        <table class="table table-responsive">
+                        <table class="table table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th width="5%">id</th>
@@ -37,16 +38,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    @foreach ($posts as $post)
+                                @foreach ($posts as $post)
+                                    <tr class="align-baseline">
                                         <td>{{ $post['id'] }}</td>
                                         <td>{{ $post['name'] }}</td>
                                         <td>{{ $post['birth-place'] }}</td>
                                         <td>{{ $post['birth-date'] }}</td>
                                         <td>{{ $post['email'] }}</td>
-                                        <td class="d-flex gap-1"><button id="delete" class="btn btn-danger btn-sm">delete</button><button id="edit" class="btn btn-warning btn-sm">edit</button></td>
-                                    @endforeach
-                                </tr>
+                                        <td class="d-flex gap-1">
+                                            <button id="delete" value="{{ $post['id'] }}"
+                                                onclick="debug()"
+                                                class="btn btn-danger btn-sm">delete</button>
+                                            <button id="edit" class="btn btn-warning btn-sm">edit</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -54,3 +60,33 @@
             </div>
         </div>
     @endsection
+
+    <script>
+        function debug(){
+            Swal.fire(
+                'Techsolutionstuff!',
+                'You clicked the button!',
+                'success'
+                )
+        }
+        function deleteCustomer(event) {
+            event.preventDefault();
+            const id = event.target.getAttribute("value");
+
+            swal({
+                    title: "Yakin?",
+                    text: "Data yang dihapus tidak bisa dipulihkan.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+
+                .then((willDelete) => {
+                    if (willDelete) {
+                        fetch(`api/delete/${id}`, {
+                            method: 'DELETE'
+                        })
+                    }
+                });
+        }
+    </script>

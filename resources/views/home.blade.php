@@ -16,6 +16,8 @@
                         @endif
 
                         {{ __('You are logged in!') }}
+                        <br>
+                        Welcome, <text class="fw-bold">{{ Auth::user()->name }}</text>!
                     </div>
                 </div>
 
@@ -42,7 +44,7 @@
                                         <td>{{ $post['birth-place'] }}</td>
                                         <td>{{ $post['birth-date'] }}</td>
                                         <td>{{ $post['email'] }}</td>
-                                        <td><button class="btn btn-danger">delete</button><button class="btn btn-warning">edit</button></td>
+                                        <td class="d-flex gap-1"><button id="delete" class="btn btn-danger btn-sm">delete</button><button id="edit" class="btn btn-warning btn-sm">edit</button></td>
                                     @endforeach
                                 </tr>
                             </tbody>

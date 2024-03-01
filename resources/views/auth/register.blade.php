@@ -41,10 +41,11 @@
 
                         <div class="row mb-3">
                             <label for="birth-date" class="col-md-4 col-form-label text-md-end">{{ __('birth-date') }}</label>
-
                             <div class="col-md-6">
+                                <script>
+                                    var today = new Date().toISOString().split('T')[0] //HELP INI CARA BIKIN MAX DATE INPUT GMN!!!!!!!
+                                </script>
                                 <input id="birth-date" type="date" class="form-control @error('birth-date') is-invalid @enderror" name="birth-date" value="{{ old('birth-date') }}" required autocomplete="birth-date" autofocus>
-
                                 @error('birth-date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

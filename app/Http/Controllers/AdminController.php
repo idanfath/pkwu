@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $posts = User::OrderBy('id', 'desc')->paginate(5);
-        return view('home', compact('posts'));
+        return view('admin', compact('posts'));
     }
 }

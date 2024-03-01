@@ -20,7 +20,9 @@ Route::get('/', function () {
 Auth::routes([
     // 'register' => false, 
     // 'reset' => false,
-    // 'verify' => false,
+    'verify' => false,
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['App\Http\Middleware\AdminCheck']], function () {
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+});

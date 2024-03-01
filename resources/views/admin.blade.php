@@ -70,7 +70,7 @@
                 position: "bottom-end",
                 title: "Item telah dihapus",
                 showConfirmButton: false,
-                timer: 1500,
+                timer: 1000,
             }); 
         }
 

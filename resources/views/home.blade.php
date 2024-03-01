@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
 
-                <div class="card my-2">
+                <div class="card mb-3">
                     <div class="card-header">Notification</div>
 
                     <div class="card-body">
@@ -15,9 +15,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        {{ __('You are logged in!') }}
-                        <br>
                         Welcome, <text class="fw-bold">{{ Auth::user()->name }}</text>!
                     </div>
                 </div>
@@ -46,9 +43,9 @@
                                         <td>{{ $post['birth-date'] }}</td>
                                         <td>{{ $post['email'] }}</td>
                                         <td class="d-flex gap-1">
-                                            <button id="delete" value="{{ $post['id'] }}" onclick="debug()"
-                                                class="btn btn-danger btn-sm">delete</button>
-                                            <button id="edit" class="btn btn-warning btn-sm">edit</button>
+                                            <button id="delete" value="{{ $post['id'] }}" onclick="deleteUser(event)"
+                                                class="btn btn-danger btn-sm">Hapus</button>
+                                            <button id="edit" class="btn btn-warning btn-sm">Edit</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -61,43 +58,45 @@
     @endsection
 
     <script>
-        function debug() {
+        window.onload = () => {
+            if (sessionStorage.getItem('userDeleted')) {
+                deletedNoti();
+                sessionStorage.removeItem('userDeleted');
+            }
+        };
+
+        function deletedNoti(){
             Swal.fire({
-                title: "Custom animation with Animate.css",
-                showClass: {
-                    popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        `
-                },
-                hideClass: {
-                    popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                        `
-                }
-            });
+                position: "bottom-end",
+                title: "Item telah dihapus",
+                showConfirmButton: false,
+                timer: 1500,
+            }); 
         }
 
-        function deleteCustomer(event) {
+        function deleteUser(event) {
             event.preventDefault();
             const id = event.target.getAttribute("value");
 
-            swal({
-                    title: "Yakin?",
-                    text: "Data yang dihapus tidak bisa dipulihkan.",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
+            Swal.fire({
+                title: "Yakin ingin menghapus?",
+                text: "Data tidak akan bisa dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Ya, hapus",
+                cancelButtonText: "Batal",
+                animation: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`api/delete/${id}`, {
+                        method: 'DELETE'
+                    })
+                    sessionStorage.setItem('userDeleted', 'true');
+                    window.location.href = window.location.href
 
-                .then((willDelete) => {
-                    if (willDelete) {
-                        fetch(`api/delete/${id}`, {
-                            method: 'DELETE'
-                        })
-                    }
-                });
+                }
+            });
         }
     </script>

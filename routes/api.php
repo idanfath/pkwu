@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::delete('/delete/{id}', [UserController::class, 'delete']);
 Route::get('/fetch/{id}', [UserController::class, 'fetchid']);
-Route::put('/update', [UserController::class, 'update']);
+// Route::put('/update', [UserController::class, 'update']);
 Route::get('/fetchall', [UserController::class, 'fetchall']);
+Route::post('/add', [UserController::class, 'create']);

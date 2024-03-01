@@ -46,8 +46,7 @@
                                         <td>{{ $post['birth-date'] }}</td>
                                         <td>{{ $post['email'] }}</td>
                                         <td class="d-flex gap-1">
-                                            <button id="delete" value="{{ $post['id'] }}"
-                                                onclick="debug()"
+                                            <button id="delete" value="{{ $post['id'] }}" onclick="debug()"
                                                 class="btn btn-danger btn-sm">delete</button>
                                             <button id="edit" class="btn btn-warning btn-sm">edit</button>
                                         </td>
@@ -62,13 +61,25 @@
     @endsection
 
     <script>
-        function debug(){
-            Swal.fire(
-                'Techsolutionstuff!',
-                'You clicked the button!',
-                'success'
-                )
+        function debug() {
+            Swal.fire({
+                title: "Custom animation with Animate.css",
+                showClass: {
+                    popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        `
+                },
+                hideClass: {
+                    popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                        `
+                }
+            });
         }
+
         function deleteCustomer(event) {
             event.preventDefault();
             const id = event.target.getAttribute("value");

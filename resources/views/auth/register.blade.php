@@ -26,6 +26,34 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="birth-place" class="col-md-4 col-form-label text-md-end">{{ __('birth-place') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="birth-place" type="text" class="form-control @error('birth-place') is-invalid @enderror" name="birth-place" value="{{ old('birth-place') }}" required autocomplete="birth-place" autofocus>
+
+                                @error('birth-place')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="birth-date" class="col-md-4 col-form-label text-md-end">{{ __('birth-date') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="birth-date" type="date" class="form-control @error('birth-date') is-invalid @enderror" name="birth-date" value="{{ old('birth-date') }}" required autocomplete="birth-date" autofocus>
+
+                                @error('birth-date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">

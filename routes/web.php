@@ -24,5 +24,5 @@ Auth::routes([
 ]);
 
 Route::group(['middleware' => ['App\Http\Middleware\AdminCheck']], function () {
-    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+    Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 });

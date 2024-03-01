@@ -26,12 +26,14 @@
                         <table class="table table-striped table-responsive">
                             <thead>
                                 <tr>
-                                    <th width="5%">id</th>
-                                    <th width="20%">name</th>
-                                    <th width="20%">birth-place</th>
-                                    <th width="20%">birth-date</th>
-                                    <th width="20%">email</th>
-                                    <th width="15%"><span>action</span></th>
+                                    <th width="5%">ID</th>
+                                    <th width="15%">Nama</th>
+                                    <th width="15%">Nomor</th>
+                                    <th width="15%">Tempat Lahir</th>
+                                    <th width="15%">Tanggal Lahir</th>
+                                    <th width="20%">Email</th>
+                                    <th width="10%">Role</th>
+                                    <th width="15%"><span>Aksi</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,9 +41,11 @@
                                     <tr class="align-baseline">
                                         <td>{{ $post['id'] }}</td>
                                         <td>{{ $post['name'] }}</td>
+                                        <td>{{ $post['number'] }}</td>
                                         <td>{{ $post['birth-place'] }}</td>
                                         <td>{{ $post['birth-date'] }}</td>
                                         <td>{{ $post['email'] }}</td>
+                                        <td>{{ $post['role'] }}</td>
                                         <td class="d-flex gap-1">
                                             <button id="delete" value="{{ $post['id'] }}" onclick="deleteUser(event)"
                                                 class="btn btn-danger btn-sm">Hapus</button>

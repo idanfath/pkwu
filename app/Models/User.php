@@ -24,6 +24,7 @@ class User extends Authenticatable
         'birth-date',
         'phone',
         'role',
+        'jurusan',
         'password',
     ];
 

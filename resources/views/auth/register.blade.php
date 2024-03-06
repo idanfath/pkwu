@@ -24,6 +24,25 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <div class="row mb-3">
+                            <label for="jurusan" class="col-md-4 col-form-label text-md-end">{{ __('Jurusan') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="jurusan" type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" value="{{ old('jurusan') }}" required autocomplete="jurusan" autofocus>
+                                    <option value="RPL">RPL</option>
+                                    <option value="TKJ">TKJ</option>
+                                    <option value="TEL">TEL</option>
+                                    <option value="TJA">TJA</option>
+                                    <option value="DBP">DBP</option>
+                                </select>
+                                @error('jurusan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Nomor Telp.') }}</label>
@@ -56,10 +75,8 @@
                         <div class="row mb-3">
                             <label for="birth-date" class="col-md-4 col-form-label text-md-end">{{ __('Tanggal Lahir') }}</label>
                             <div class="col-md-6">
-                                <script>
-                                    var today = new Date().toISOString().split('T')[0] //HELP INI CARA BIKIN MAX DATE INPUT GMN!!!!!!!
-                                </script>
-                                <input id="birth-date" type="date" class="form-control @error('birth-date') is-invalid @enderror" name="birth-date" value="{{ old('birth-date') }}" required autocomplete="birth-date" autofocus>
+                                
+                                <input id="birth-date" max="2024-01-01" type="date" class="form-control @error('birth-date') is-invalid @enderror" name="birth-date" value="{{ old('birth-date') }}" required autocomplete="birth-date" autofocus>
                                 @error('birth-date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -74,6 +74,7 @@
                 position: "bottom-end",
                 title: "Item telah dihapus",
                 showConfirmButton: false,
+                animation: false,
                 timer: 1000,
             }); 
         }

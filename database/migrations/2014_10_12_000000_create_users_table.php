@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('birth-date');
             $table->string('number')->nullable()->unique();
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->enum('jurusan', ['RPL', 'TKJ', 'TEL', 'TJA', 'DBP']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

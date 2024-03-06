@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'birth-date' => ['required', 'date', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'jurusan' => 'required|in:RPL,TKJ,TEL,TJA,DBP',
         ]);
     }
 
